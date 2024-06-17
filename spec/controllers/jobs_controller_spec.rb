@@ -21,5 +21,10 @@ RSpec.describe JobsController, type: :controller do
       json_response = JSON.parse(response.body)
       expect(json_response.first['id']).to eq(job.id)
     end
+
+    it 'includes the job title in the JSON response' do
+      json_response = JSON.parse(response.body)
+      expect(json_response.first['title']).to eq(job.title)
+    end
   end
 end

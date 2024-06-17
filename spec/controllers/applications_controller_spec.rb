@@ -22,6 +22,11 @@ RSpec.describe ApplicationsController, type: :controller do
       json_response = JSON.parse(response.body)
       expect(json_response.size).to eq(2)
       expect(json_response.first['id']).to eq(application1.id)
+      expect(json_response.second['id']).to eq(application2.id)
+    end
+
+    it 'returns applications with active jobs' do
+      expect(Application).to have_received(:with_active_job)
     end
   end
 end

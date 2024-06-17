@@ -13,6 +13,11 @@ RSpec.describe Job, type: :model do
     it 'returns the status of the last event' do
       expect(job.status).to eq('activated')
     end
+
+    it 'returns nil if no events' do
+      job_activated_event.destroy
+      expect(job.status).to be_nil
+    end
   end
 
   describe '#applications associations' do

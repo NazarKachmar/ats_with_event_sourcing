@@ -9,8 +9,7 @@ module MysqlJsonAccessor
     def mysql_json_accessor(attribute, fields_with_types)
       fields_with_types.each do |field, type|
         define_method(field) do
-          value = self[attribute][field.to_s]
-          self.class.send(:cast_value, value, type)
+          self.class.send(:cast_value, self[attribute][field.to_s], type)
         end
 
         define_method("#{field}=") do |value|
